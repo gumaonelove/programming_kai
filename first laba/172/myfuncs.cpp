@@ -3,88 +3,99 @@
 #include <fstream>
 #include <limits>
 
+double getValue();
+int n = 0;
+
+int get_n() {
+    using namespace std;
+    if (n == 0) {
+        cout << "Введите n: "; // user input n
+        int n = getValue(); // array size
+    }
+    return n;
+}
+
 bool init() {
     using namespace std;
-    int n; // array size
     int a_i;
-
-    cout << "Введите n: "; // user input n
-    cin >> n; // from user to n
 
     int *my_array = new int[n]; // allocating memory for an array
     
     for (int i = 0; i < n; i++) { // array filling
         cout << "Введите a[" << i << "]: "; // user input a[i]
-        cin >> a_i;
-        my_array[i] = a_i;
+        my_array[i] =  getValue();
     }
     return true;
 }
 
-bool finit (std::ifstream & f, ) {
+bool finit (std::ifstream & f) {
+    using namespace std;
     for (unsigned i = 0; i < n; i++) {
         f >> my_array[i]; // from file to out array
-        if (f.fail()) {
-            std::cout << "Ошибка ввода из файла элемента [" << i << "]." << std::endl;
+        if (f.fail()) { // error handler
+            cout << "Ошибка ввода из файла элемента [" << i << "]." << endl;
             return false;
+        } else {
+            if (i % 3 == 0) {
+                cout << "Круг (" << my_array[i] << ', ' << my_array[i+1] << '), с радиусом r = '<< my_array[i+2] << endl;
+                cout << "Построен и закрашен!"
+            }
         }
     }
     return true;
 }
 
-void fsum(std::ostream & f) {
-    f << "Исходный массив: " << std::endl;
+void main_func(std::ostream & f) {
+    using namespace std;
+    f << "Исходный массив: " << endl;
     for (unsigned i = 0; i < n; i++) {
-        for (unsigned j = 0; j < n; j++) {
-            f << mass[i][j] << "\t";
-        }
-        f << std::endl << std::endl;
+        f << my_array[i] << "\t";
+
     }
-    f << "Сума строк: " << i1 + 1 << " и " << i2 + 1 << ": " << std::endl;
-    for (unsigned i = 0; i < n; i++) {
-        f << mass[i1][i] + mass[i2][i] << "\t";
-    }
-    f << std::endl << std::endl;
+    f << endl << endl;
 }
 
 double getValue() {
+    using namespace std;
     while (true) {
         double a;
-        std::cin >> a;
-        if (std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Ошибка ввода. \n";
+        cin >> a;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ошибка ввода. \n";
         } else {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             return a;
         }
     }
 }
 
 bool getNext() {
-    std:: cout << "Продолжить? (0 - нет, 1 - да): ";
+    using namespace std;
+    cout << "Продолжить? (0 - нет, 1 - да): ";
     while (true) {
         char sm;
-        std::cin >> sm;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin >> sm;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (sm == '0' || sm == '1') {
             return sm == '1' ? true : false;
         } else {
-            std::cout << "Ошибка ввода. \n";
+            cout << "Ошибка ввода. \n";
         }
     }
 }
 
 unsigned char get_0_1() {
+    using namespace std;
     while (true) {
         char sm;
-        std::cin >> sm;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        cin >> sm;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         if (sm == '0' || sm == '1') {
             return sm;
         } else {
-            std::cout << "Ошибка ввода. \n";
+            cout << "Ошибка ввода. \n";
         }
     }
 }
