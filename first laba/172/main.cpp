@@ -55,6 +55,7 @@ int main() {
     }
     fin.close();
     fout.close();
-    // delete my_array; // clean memory
+    delete [] my_array; // clean memory
     return 0;
 }
+

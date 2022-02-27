@@ -15,12 +15,12 @@ int get_n() {
     return n;
 }
 
-bool init() {
+int *my_array = new int[get_n()]; // allocating memory for an array
+
+bool init () {
     using namespace std;
     int a_i;
 
-    int *my_array = new int[n]; // allocating memory for an array
-    
     for (int i = 0; i < n; i++) { // array filling
         cout << "Введите a[" << i << "]: "; // user input a[i]
         my_array[i] =  getValue();
@@ -37,8 +37,8 @@ bool finit (std::ifstream & f) {
             return false;
         } else {
             if (i % 3 == 0) {
-                cout << "Круг (" << my_array[i] << ', ' << my_array[i+1] << '), с радиусом r = '<< my_array[i+2] << endl;
-                cout << "Построен и закрашен!"
+                cout << "Круг (" << my_array[i] << ", " << my_array[i+1] << "), с радиусом r = " << my_array[i+2] << endl;
+                cout << "Построен и закрашен!";
             }
         }
     }
@@ -49,8 +49,7 @@ void main_func(std::ostream & f) {
     using namespace std;
     f << "Исходный массив: " << endl;
     for (unsigned i = 0; i < n; i++) {
-        f << my_array[i] << "\t";
-
+        f << my_array[i] << '\t';
     }
     f << endl << endl;
 }
