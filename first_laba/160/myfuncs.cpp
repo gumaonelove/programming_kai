@@ -2,6 +2,7 @@
 #include <limits>
 #include <string>
 #include <fstream>
+#include <tuple>
 
 #include "variables.h"
 #include "functions.h"
@@ -10,13 +11,14 @@ using namespace std;
 
 
 bool init() {
-    cout << "Введите значение x: ";
-    x = getValue();
+    string line;
+    cout << "Введите значение n: ";
+    n = getIndex();
 
     if(checkIndexes()) {
-        for(int j = 1; j <= 100; j++) {
-            cout << "mass[" << j << "] = ";
-            mass.push_back(getValue());
+        for(int j = 1; j <= n; j++) {
+            line = getValue();
+            my_vector.push_back(0, 0);
         }
     } else {
         cout << "Неправильно указан(ы) индекс(ы)" << endl;
@@ -27,18 +29,17 @@ bool init() {
 
 
 bool file_init (ifstream & file) {
-    double now_value;
+    string now_line;
     string line;
 
     getline(file, line);
-    x = stoi(line);
-    cout << "x = " << x << endl;
+    n = stoi(line);
 
     if(checkIndexes()) {
-        for(int j = 1; j <= 100; j++) {
+        for(int j = 1; j <= n; j++) {
             getline(file, line);
-            now_value = stoi(line);
-            mass.push_back(now_value);
+            now_line = line;
+            my_vector.push_back(0);
         }
     } else {
         cout << "Неправильно указан(ы) индекс(ы)" << endl;
@@ -48,17 +49,15 @@ bool file_init (ifstream & file) {
 }
 
 
-double getValue() {
+string getValue() {
     while (true) {
-        double a;
-        cin >> a;
+        string line;
+        cin >> line;
         if (cin.fail()) {
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Ошибка ввода." << endl;
-        } else {
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            return a;
+        } else { 
+            return line;
         }
     }
 }
@@ -81,7 +80,7 @@ int getIndex() {
 
 
 bool checkIndexes() {
-    return (x <= 100);
+    return (i <= n);
 }
 
 
@@ -115,18 +114,4 @@ bool getNext() {
 
 
 string average() {
-    int k;
-    string answer;
-    for(int j = 1; j <= 100; j++) {
-
-        if (mass[j-1] < x && x <= mass[j]) {
-            cout << mass[j-1] << '<' << x << '<' << mass[j]  << endl;
-            k = j;
-            break;
-        }
-    }
-    answer = "Ответ: "  ;
-    answer += to_string(k+1);
-
-    return answer;
 }
