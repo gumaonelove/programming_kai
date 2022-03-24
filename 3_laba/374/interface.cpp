@@ -2,7 +2,6 @@
 #include <limits>
 #include <string>
 #include <fstream>
-#include <tuple>
 
 #include "variables.h"
 #include "functions.h"
@@ -10,60 +9,32 @@
 using namespace std;
 
 
-bool init() {
-    string line;
+bool init() 
+{
     cout << "Введите значение n: ";
     n = getIndex();
 
-    if(checkIndexes()) {
-        for(int j = 1; j <= n; j++) {
-            line = getValue();
-            my_vector.push_back(0, 0);
-        }
-    } else {
-        cout << "Неправильно указан(ы) индекс(ы)" << endl;
-        return false;
-    }
     return true;
 }
 
 
-bool file_init (ifstream & file) {
-    string now_line;
+bool file_init (ifstream & file) 
+{
+    double now_value;
     string line;
 
     getline(file, line);
     n = stoi(line);
+    
+    getline(file, line);
+    m = stoi(line);
 
-    if(checkIndexes()) {
-        for(int j = 1; j <= n; j++) {
-            getline(file, line);
-            now_line = line;
-            my_vector.push_back(0);
-        }
-    } else {
-        cout << "Неправильно указан(ы) индекс(ы)" << endl;
-        return false;
-    }
     return true;
 }
 
 
-string getValue() {
-    while (true) {
-        string line;
-        cin >> line;
-        if (cin.fail()) {
-            cin.clear();
-            cout << "Ошибка ввода." << endl;
-        } else { 
-            return line;
-        }
-    }
-}
-
-
-int getIndex() {
+int getIndex() 
+{
     while (true) {
         int a;
         cin >> a;
@@ -79,12 +50,8 @@ int getIndex() {
 }
 
 
-bool checkIndexes() {
-    return (i <= n);
-}
-
-
-char get_0_1() {
+char get_0_1() 
+{
     while (true) {
         char sm;
         cin >> sm;
@@ -98,7 +65,8 @@ char get_0_1() {
 }
 
 
-bool getNext() {
+bool getNext() 
+{
     cout << "Продолжаем? (0 - нет, 1 - да): ";
     while (true) {
         char sm;
@@ -110,8 +78,4 @@ bool getNext() {
             cout << "Ошибка ввода." << endl;
         }
     }
-}
-
-
-string average() {
 }
