@@ -1,20 +1,15 @@
 #ifndef INC_374_FUNCTIONS_H
 #define INC_374_FUNCTIONS_H
 
-#include <vector>
-
-void init();
-
-int get_count (std::vector< std::vector<double> > my_vector);
 int getIndex();
 
-bool get_0_1();
 std::string my_function();
+std::string get_file_url();
 
-bool getNext();
+bool init();
 bool file_init (std::ifstream & f);
 bool get_0_1();
-
-std::vector< std::vector<double> > get_vector();
+bool getNext();
+bool search (std::vector<char> now_vector);
 
 #endif //INC_374_FUNCTIONS_H

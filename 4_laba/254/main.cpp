@@ -1,15 +1,24 @@
 #include <iostream>
 #include <fstream>
+#include <vector>
 
 #include "functions.h"
 
+using namespace std;
+
 int n = 0;
+extern vector<char> my_vector;
 
 int main() 
 {
-    using namespace std;
+    string file_url = get_file_url();
+    ofstream file_out(file_url);
+
+    if (!file_out.is_open())
+        ofstream file_out("out.txt");
+
     ifstream file_in("in.txt");
-    ofstream file_out("out.txt");
+    
     unsigned char from_file;
     unsigned char to_file;
     while (true) 
@@ -22,8 +31,10 @@ int main()
             to_file = get_0_1();
             if (!from_file && !to_file) // из консоли в консоль
             {
-                init();
-                cout << my_function() << endl;
+                if (init())
+                    cout << my_function() << endl;
+                    my_vector.clear();
+                
                 if(getNext()) {
                     continue;
                 } else {
@@ -32,8 +43,10 @@ int main()
                 }
             } else if (!from_file && to_file) // из консоли в файл
             { 
-                init();
-                file_out << my_function() << endl;
+                if (init())
+                    file_out << my_function() << endl;
+                    my_vector.clear();
+                
                 if(getNext()) {
                     continue;
                 } else {
@@ -44,11 +57,13 @@ int main()
             { 
                 if (file_init(file_in))
                     cout << my_function() << endl;
+                    my_vector.clear();
                 break;
             } else if (from_file && to_file) // из файла в файл
             { 
                 if (file_init(file_in))
                     file_out << my_function() << endl;
+                    my_vector.clear();
                 break;
             }
         } else {

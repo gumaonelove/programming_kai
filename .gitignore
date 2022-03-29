@@ -4,5 +4,5 @@
 *.exe
 *.out
 /.vscode/
-/cmake-build-debug
-/first_laba/162/cmake-build-debug/
+
+*.JPG

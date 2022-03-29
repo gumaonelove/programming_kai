@@ -1,49 +1,70 @@
 #include <string>
 #include <cmath>
 
-#include "variables.h"
 #include "functions.h"
 
-#define PI 3.14159265 
+#define PI 3.14159265
 
 using namespace std;
 
+extern int n;
 
 string my_function() 
 {  
     string answer;
-    int ans;
-    
+    vector< vector<double> > _my_vector = get_vector();
+    int ans = get_count(_my_vector);
 
-    
     answer = "Положительных элементов содержит матрица: ";
     answer += to_string(ans);
     return answer;
 }
 
 
-vector<vector<double>> get_vector() 
+vector< vector<double> > get_vector()
 {
-    double param;
+    double _param;
+    double _sin;
+    vector<double> _now_vector;
+    vector< vector<double> > _vector_sinus;
 
+    for (int i = 1; i <= n ; i++)
+    {
+        for (int j = 1; j <= n; j++)
+        {
+            _param = i + j / 2;
+            _sin = sin(_param * PI / 180);
+
+            _now_vector.push_back(_sin);
+
+            /*
+            cout << "param = i + j / 2" << endl;
+            cout << "param[" << i << "][" << j << "] = " << _param << endl;
+            cout << "sin[" << i << "][" << j << "] = " << _sin << endl;
+            cout << endl;
+            */
+        }
+        _vector_sinus.push_back(_now_vector);
+        _now_vector.clear();
+    }
+
+    return _vector_sinus;
+}
+
+
+int get_count (vector< vector<double> > _my_vector) 
+{
+    int _count = 0;
     for (int i = 0; i < n; i++) 
     {
         for (int j = 0; j < n; j++) 
         {
-            param = i + j / 2;
-            my_vector[i][j] = sin(param * PI / 180);
+            if (_my_vector[i][j] > 0)
+            {
+                _count += 1;
+            }
         }
     }
-}
 
-int get_count (vector<vector<double>> my_vector) 
-{
-    for (int i = 0; i < n; i++) 
-    {
-        for (int j = 0; j < n; j++) 
-        {
-            
-        }
-    }
+    return _count;
 }
-
