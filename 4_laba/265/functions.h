@@ -1,5 +1,5 @@
-#ifndef INC_374_FUNCTIONS_H
-#define INC_374_FUNCTIONS_H
+#ifndef INC_265_FUNCTIONS_H
+#define INC_265_FUNCTIONS_H
 
 int getIndex();
 
@@ -13,4 +13,4 @@ bool get_0_1();
 bool getNext();
 
 
-#endif //INC_374_FUNCTIONS_H
+#endif //INC_265_FUNCTIONS_H
