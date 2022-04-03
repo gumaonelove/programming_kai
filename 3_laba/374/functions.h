@@ -2,6 +2,7 @@
 #define INC_374_FUNCTIONS_H
 
 #include <vector>
+#include <string>
 
 void init();
 
