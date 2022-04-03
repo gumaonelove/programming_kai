@@ -35,7 +35,7 @@ int main()
                 {
                     cout << my_function() << endl;
                     my_vector.clear();
-                }
+                }   
                 
                 if(getNext()) {
                     continue;
@@ -50,7 +50,7 @@ int main()
                     file_out << my_function() << endl;
                     my_vector.clear();
                 }
-                
+                    
                 if(getNext()) {
                     continue;
                 } else {
@@ -73,7 +73,6 @@ int main()
                     file_out << my_function() << endl;
                     my_vector.clear();
                 }
-                    
                 break;
             }
         } else {
