@@ -17,7 +17,7 @@ string get_file_url()
     cout << "Укажите адрес файла для вывода результатов работы программы, " << endl;
     cout << "Пример: '~/rez/out.txt' => ";
 
-    cin >> _file_url;
+    getline(cin, _file_url);
 
     return _file_url;
 }

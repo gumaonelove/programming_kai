@@ -1,6 +1,4 @@
 #include <string>
-#include <cmath>
-#include <iostream>
 #include <vector>
 
 #include "functions.h"
@@ -9,6 +7,7 @@ using namespace std;
 
 extern int n;
 extern vector<char> my_vector;
+
 
 string my_function() 
 {  

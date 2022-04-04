@@ -36,13 +36,6 @@ vector< vector<double> > get_vector()
             _sin = sin(_param * PI / 180);
 
             _now_vector.push_back(_sin);
-
-            /*
-            cout << "param = i + j / 2" << endl;
-            cout << "param[" << i << "][" << j << "] = " << _param << endl;
-            cout << "sin[" << i << "][" << j << "] = " << _sin << endl;
-            cout << endl;
-            */
         }
         _vector_sinus.push_back(_now_vector);
         _now_vector.clear();

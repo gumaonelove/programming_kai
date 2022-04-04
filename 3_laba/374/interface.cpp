@@ -39,13 +39,15 @@ bool file_init (ifstream & file)
 int getIndex() 
 {
     while (true) {
-        int a;
+        int a = 0;
         cin >> a;
-        if (cin.fail() && n > 0) {
+        if (cin.fail() || a <= 0)
+        {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Ошибка ввода." << endl;
-        } else {
+        } else
+        {
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             return a;
         }
