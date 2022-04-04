@@ -10,13 +10,21 @@ using namespace std;
 
 
 bool init() {
+    double last_value = -100000000;
+    double now_value = 0;
     cout << "Введите значение x: ";
     x = getValue();
 
     if(checkIndexes()) {
         for(int j = 1; j <= 100; j++) {
             cout << "mass[" << j << "] = ";
-            mass.push_back(getValue());
+            now_value = getValue();
+            if (last_value >= now_value) {
+                cout << "Неправильно указан(ы) y" << endl;
+                return false;
+            }
+            mass.push_back(now_value);
+            last_value = now_value;
         }
     } else {
         cout << "Неправильно указан(ы) индекс(ы)" << endl;
@@ -27,7 +35,8 @@ bool init() {
 
 
 bool file_init (ifstream & file) {
-    double now_value;
+    double now_value = 0;
+    double last_value = -100000000;
     string line;
 
     getline(file, line);
@@ -38,7 +47,12 @@ bool file_init (ifstream & file) {
         for(int j = 1; j <= 100; j++) {
             getline(file, line);
             now_value = stoi(line);
+            if (last_value >= now_value) {
+                cout << "Неправильно указан(ы) y" << endl;
+                return false;
+            }
             mass.push_back(now_value);
+            last_value = now_value;
         }
     } else {
         cout << "Неправильно указан(ы) индекс(ы)" << endl;
