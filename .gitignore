@@ -5,6 +5,5 @@
 *.out
 /.vscode/
 
-**main
-
 *.JPG
+main
