@@ -19,8 +19,18 @@ bool init() {
         for(int j = 1; j <= 100; j++) {
             cout << "mass[" << j << "] = ";
             now_value = getValue();
+            if (j == 1 && now_value >= x){
+                cout << "Неправильно указан(ы) y, по уловию y[1] < x" << endl;
+                return false;
+            }
+            if (j == 100 && x > now_value){
+                cout << "Неправильно указан(ы) y, по уловию x <= y[100]" << endl;
+                return false;
+            }
+
+
             if (last_value >= now_value) {
-                cout << "Неправильно указан(ы) y" << endl;
+                cout << "Неправильно указан(ы) y, по уловию y[i] < y[i+1]" << endl;
                 return false;
             }
             mass.push_back(now_value);
@@ -47,8 +57,9 @@ bool file_init (ifstream & file) {
         for(int j = 1; j <= 100; j++) {
             getline(file, line);
             now_value = stoi(line);
+
             if (last_value >= now_value) {
-                cout << "Неправильно указан(ы) y" << endl;
+                cout << "Неправильно указан(ы) y, по уловию y[i] < y[i+1]" << endl;
                 return false;
             }
             mass.push_back(now_value);
