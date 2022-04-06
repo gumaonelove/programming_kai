@@ -9,26 +9,20 @@
 using namespace std;
 
 extern int n;
-extern int g_A_array[30];
-extern int g_B_array[40];
-extern std::vector<int> g_C_array;
-
+extern bool answer;
 
 string my_function() {
-    string answer = "Неверно";
-    int a_ind_neg_oc = get_index_negative_occurrence_from_array(g_A_array, 30);
-    int b_ind_neg_oc = get_index_negative_occurrence_from_array(g_B_array, 40);
-    int c_ind_neg_oc = get_index_negative_occurrence_from_vector(g_C_array);
+    string str = "Неверно";
     
-    if ((c_ind_neg_oc < a_ind_neg_oc) && (c_ind_neg_oc < b_ind_neg_oc))
-        answer = "Верно";
+    if (answer)
+        str = "Верно";
     
-    return answer;
+    return str;
 }
 
-int get_index_negative_occurrence_from_array(int now_array[], int lenght)
+int get_index_negative_occurrence_from_array(int now_array[], int length)
 {
-    for (int i = 0; i < lenght; i++)
+    for (int i = 0; i < length; i++)
     {
         if (now_array[i] < 0)
             return i;
@@ -46,4 +40,96 @@ int get_index_negative_occurrence_from_vector(std::vector<int> now_vector)
         
     }
     return -1;
+}
+
+int *get_array_from_console (const int size_array)
+{
+    int array[size_array] = {};
+    int now_value = 0;
+    bool is_negative = false;
+
+    for (int i = 0; i < size_array; i++)
+    {
+        cout << "a[" << i + 1 << "] = ";
+        now_value = getIndex();
+        array[i] = now_value;
+        if (now_value < 0)
+            is_negative = true;
+    }
+
+    if (!is_negative)
+        array[0] = -1;
+    
+    return array;
+}
+
+
+vector<int> get_vector_from_console()
+{
+    int now_value = 0;
+    vector<int> my_vector;
+    bool is_negative = false;
+
+    for (int i = 0; i < n; i++)
+    {
+        cout << "c[" << i + 1 << "] = ";
+        now_value = getIndex();
+        my_vector.push_back(now_value);
+        if (now_value < 0)
+            is_negative = true;
+    }
+
+    if (!is_negative)
+        return {};
+    
+    return my_vector;
+}
+
+
+int *get_array_from_file (const int size_array, std::ifstream & file)
+{
+    int array[size_array] = {};
+    int now_value = 0;
+    bool is_negative = false;
+    string line;
+
+    for (int i = 0; i < size_array; i++)
+    {
+        getline(file, line);
+        now_value = stoi(line);
+        array[i] = now_value;
+    
+        if (now_value < 0)
+            is_negative = true;
+    }
+
+    if (!is_negative)
+        array[0] = -1;
+    
+    return array;
+}
+
+
+
+vector<int> get_vector_from_file(std::ifstream & file)
+{
+    int now_value = 0;
+    vector<int> my_vector;
+    bool is_negative = false;
+    string line;
+
+    for (int i = 0; i < n; i++)
+    {
+        getline(file, line);
+        now_value = stoi(line);
+
+        my_vector.push_back(now_value);
+        if (now_value < 0)
+            is_negative = true;
+    }
+
+    if (!is_negative)
+        return {};
+    
+    return my_vector;
 }

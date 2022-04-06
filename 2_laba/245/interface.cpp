@@ -6,18 +6,34 @@
 
 #include "functions.h"
 
-int n = 0;
-int g_A_array[30] = {};
-int g_B_array[40] = {};
-std::vector<int> g_C_array;
+const int size_a = 5;
+const int size_b = 5;
 
+
+int n = 0;
+bool answer = false;
 
 void init() {
     using namespace std;
-    bool is_negative_in_a = false;
-    bool is_negative_in_b = false;
-    bool is_negative_in_c = false;
-    int now_value = 0;
+
+    int* A_array = get_array_from_console(size_a);
+    while (A_array[0] == -1){
+        cout << "Должно быть хотябы одно отрицательное значение";
+        int* A_array = get_array_from_console(size_a);
+    }
+
+    int* B_array = get_array_from_console(size_b);
+    while (B_array[0] == -1){
+        cout << "Должно быть хотябы одно отрицательное значение";
+        int* B_array = get_array_from_console(size_b);
+    }
+
+    vector<int> C_array = get_vector_from_console();
+    while (C_array.empty()){
+        cout << "Должно быть хотябы одно отрицательное значение";
+        vector<int> C_array = get_vector_from_console();
+    }
+
 
     cout << "Введите натуральное значение n: ";
     while (n <= 0)
@@ -28,41 +44,21 @@ void init() {
         cout << "Введите натуральное значение n: ";
     }
 
-    for (int i = 0; i < 30; i++)
-    {
-        cout << "a[" << i + 1 << "] = ";
-        now_value = getIndex();
-        g_A_array[i] = now_value;
-        if (now_value < 0)
-            is_negative_in_a = true;
-    }
+    int a_ind_neg_oc = get_index_negative_occurrence_from_array(A_array, size_a);
+    int b_ind_neg_oc = get_index_negative_occurrence_from_array(B_array, size_b);
+    int c_ind_neg_oc = get_index_negative_occurrence_from_vector(C_array);
 
-    for (int i = 0; i < 40; i++)
-    {
-        cout << "b[" << i + 1 << "] = ";
-        now_value = getIndex();
-        g_B_array[i] = now_value;
-        if (now_value < 0)
-            is_negative_in_b = true;
-    }
+    if ((c_ind_neg_oc < a_ind_neg_oc) && (c_ind_neg_oc < b_ind_neg_oc))
+        answer = true;
 
-    for (int i = 0; i < n; i++)
-    {
-        cout << "c[" << i + 1 << "] = ";
-        now_value = getIndex();
-        g_C_array.push_back(now_value);
-        if (now_value < 0)
-            is_negative_in_c = true;
-    }
-
-    n= 0;
+    n = 0;
 }
 
 
 void file_init (std::ifstream & file) {
     using namespace std;
-    double now_value;
     string line;
+ 
     while (n <= 0) {
         getline(file, line);
         n = stoi(line);
@@ -71,24 +67,31 @@ void file_init (std::ifstream & file) {
         cout << "Введите натуральное значение n: ";
     }
 
-    for (int i = 0; i < 30; i++)
-    {
-        getline(file, line);
-        g_A_array[i] = stoi(line);
+    int* A_array = get_array_from_file(size_a, file);
+    while (A_array[0] == -1){
+        cout << "Должно быть хотябы одно отрицательное значение";
+        int* A_array = get_array_from_file(size_a, file);
     }
 
-    for (int i = 0; i < 40; i++)
-    {
-        getline(file, line);
-        g_B_array[i] = stoi(line);
+    int* B_array = get_array_from_file(size_b, file);
+    while (B_array[0] == -1){
+        cout << "Должно быть хотябы одно отрицательное значение";
+        int* B_array = get_array_from_file(size_a, file);
     }
 
-    for (int i = 0; i < n; i++)
-    {
-        getline(file, line);
-        g_C_array.push_back(stoi(line));
+    vector<int> C_array = get_vector_from_file(file);
+    while (C_array.empty()){
+        cout << "Должно быть хотябы одно отрицательное значение";
+        vector<int> C_array = get_vector_from_file(file);
     }
 
+
+    int a_ind_neg_oc = get_index_negative_occurrence_from_array(A_array, size_a);
+    int b_ind_neg_oc = get_index_negative_occurrence_from_array(B_array, size_b);
+    int c_ind_neg_oc = get_index_negative_occurrence_from_vector(C_array);
+
+    if ((c_ind_neg_oc < a_ind_neg_oc) && (c_ind_neg_oc < b_ind_neg_oc))
+        answer = true;
     n = 0;
 }
 
