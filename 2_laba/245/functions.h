@@ -1,6 +1,8 @@
 #ifndef INC_245_FUNCTIONS_H
 #define INC_245_FUNCTIONS_H
 
+#include <vector>
+
 void init();
 void file_init (std::ifstream & file);
 

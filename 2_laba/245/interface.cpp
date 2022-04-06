@@ -6,7 +6,6 @@
 
 #include "functions.h"
 
-
 int n = 0;
 int g_A_array[30] = {};
 int g_B_array[40] = {};
@@ -15,43 +14,60 @@ std::vector<int> g_C_array;
 
 void init() {
     using namespace std;
+    bool is_negative_in_a = false;
+    bool is_negative_in_b = false;
+    bool is_negative_in_c = false;
+    int now_value = 0;
+
     cout << "Введите натуральное значение n: ";
     while (n <= 0)
     {
         n = getIndex();
+	    if (n > 0)
+		    break;
         cout << "Введите натуральное значение n: ";
     }
 
     for (int i = 0; i < 30; i++)
     {
         cout << "a[" << i + 1 << "] = ";
-        g_A_array[i] = getIndex();
+        now_value = getIndex();
+        g_A_array[i] = now_value;
+        if (now_value < 0)
+            is_negative_in_a = true;
     }
 
     for (int i = 0; i < 40; i++)
     {
         cout << "b[" << i + 1 << "] = ";
-        g_B_array[i] = getIndex();
+        now_value = getIndex();
+        g_B_array[i] = now_value;
+        if (now_value < 0)
+            is_negative_in_b = true;
     }
 
     for (int i = 0; i < n; i++)
     {
         cout << "c[" << i + 1 << "] = ";
-        g_C_array.push_back(getIndex());
+        now_value = getIndex();
+        g_C_array.push_back(now_value);
+        if (now_value < 0)
+            is_negative_in_c = true;
     }
+
+    n= 0;
 }
 
 
 void file_init (std::ifstream & file) {
     using namespace std;
-    cout << "Введите натуральное значение n: ";
     double now_value;
     string line;
-
-    while (n <= 0)
-    {
+    while (n <= 0) {
         getline(file, line);
         n = stoi(line);
+        if (n > 0)
+            break;
         cout << "Введите натуральное значение n: ";
     }
 
@@ -71,12 +87,15 @@ void file_init (std::ifstream & file) {
     {
         getline(file, line);
         g_C_array.push_back(stoi(line));
-    } 
+    }
+
+    n = 0;
 }
 
 
 int getIndex() {
     using namespace std;
+
     while (true) {
         int a;
         cin >> a;
@@ -94,6 +113,7 @@ int getIndex() {
 
 char get_0_1() {
     using namespace std;
+
     while (true) {
         char sm;
         cin >> sm;
@@ -109,6 +129,7 @@ char get_0_1() {
 
 bool getNext() {
     using namespace std;
+
     cout << "Продолжаем? (0 - нет, 1 - да): ";
     while (true) {
         char sm;
