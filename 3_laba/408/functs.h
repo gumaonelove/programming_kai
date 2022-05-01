@@ -2,14 +2,15 @@
 #define LAB3_FUNCTS_H
 
 #include <vector>
+#include <string>
 
-using namespace std;
+void rescript();
+void mainfunct();
 
-void rescript(vector<double>U, vector<double>senior, vector<double>middle, vector<double>junior, int n);
-vector<double>push_str(string line);
-bool checkline(string line);
-string getlin();
-void mainfunct(vector<double>senior, vector<double>middle, vector<double>junior, double answer);
+std::vector<double> from_string_to_vector(std::string line);
+std::string getlin();
+
+bool checkline(std::string line);
 bool insert();
 
 #endif //LAB3_FUNCTS_H

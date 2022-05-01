@@ -1,94 +1,71 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
 
 #include "functs.h"
 
 using namespace std;
 
-int main() {
+int main()
+{
     ifstream file_in("in.txt");
     ofstream file_out("out.txt");
-    while(true){
-        vector<vector<double>>working_field(3);
-        vector<double>first;
-        vector<double>second;
-        vector<double>third;
+    while(true)
+    {
+        vector<vector<double> >working_field;
         double ans = 0;
         cout << "Insert from console[0] or from file[1]." << endl;
-        if(insert()){
+
+        if(insert())
+        {
             string str;
-            int I = 0;
-            int n;
-            while(getline(file_in, str)){
-                if(I==0){
-                    n = stoi(str);
-                }else if(I==1){
-                    vector<double>temp = push_str(str);
-                    for(int k=0; k<n; k++){
-                        first.push_back(temp[k]);
-                    }
-                }else if(I==2){
-                    vector<double>temp = push_str(str);
-                    for(int k=0; k<n; k++){
-                        second.push_back(temp[k]);
-                    }
-                }else if(I==3){
-                    vector<double>temp = push_str(str);
-                    for(int k=0; k<n; k++){
-                        third.push_back(temp[k]);
-                    }
-                }else{
-                    vector<double>temp = push_str(str);
-                    mainfunct(first, second, third, ans);
-                    rescript(temp,first,second,third, n);
-                }
-                I+=1;
+            getline(file_in, str);
+            int n = stoi(str);
+
+            while( getline(file_in, str) )
+            {
+                working_field.push_back(from_string_to_vector(str));
             }
+
             cout << "Output from console[0] or from file[1]." << endl;
-            if(insert()){
+            if (insert())
+            {
                 file_out << ans << endl;
-            }else{
+            } else
+            {
                 cout << ans << endl;
             }
             return 0;
-        }else{
+        } else
+        {
             cout << "Vvedite poryadok matrici:" << endl;
             string N;
-            cin >>N;
+            cin >> N;
             int n = stoi(N);
             cout << "Vvedite stroki matrici:" << endl;
-            for(int i = 0;i<n;i++){
+
+            for(int i = 0;i<n;i++)
+            {
                 string ins = getlin();
-                vector<double>temp = push_str(ins);
-                if(i==0){
-                    for(int k = 0; k<n; k++){
-                        first.push_back(temp[k]);
-                    }
-                }else if(i==1){
-                    for(int k = 0; k<n; k++){
-                        second.push_back(temp[k]);
-                    }
-                }else if(i==2){
-                    for(int k = 0; k<n; k++){
-                        third.push_back(temp[k]);
-                    }
-                }else{
-                    mainfunct(first, second, third, ans);
-                    rescript(temp , first , second , third, n);
-                }
+                cout << "ins = " << ins << endl;
+                vector<double>temp = from_string_to_vector(ins);
             }
             cout << "Output from console[0] or from file[1]." << endl;
-            if(insert()){
+            if(insert())
+            {
                 file_out << ans <<endl;
-            }else{
+            } else
+            {
                 cout << "The answer is:" << ans << endl;
             }
         }
         cout << "Do you want to continue? No[0] Yes[1]" << endl;
-        if(insert()){
+        if (insert())
+        {
             continue;
-        }else{
+        } else
+        {
             cout << "See you next time." << endl;
             file_in.close();
             file_out.close();

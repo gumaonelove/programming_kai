@@ -3,11 +3,11 @@
 #include <string>
 #include <fstream>
 
-#include "variables.h"
 #include "functions.h"
 
 using namespace std;
 
+extern int n;
 
 void init() 
 {

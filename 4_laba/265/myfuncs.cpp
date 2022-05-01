@@ -42,5 +42,3 @@ string my_replace (vector<char> now_vector)
     }
     return ans;
 }
-
-
