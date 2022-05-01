@@ -8,8 +8,11 @@ bool checkIndexes();
 bool getNext();
 
 int getIndex();
-int getNumberFromFile(std::ifstream & file);
-int Partition(std::vector<int>& values, int l, int r);
+double getNumberFromFile(std::ifstream & file);
+double Partition(std::vector<double>& values, double l, double r);
+
+double getValue();
+double getDoubleFromFile(std::ifstream & file)
 
 char get_0_1();
 

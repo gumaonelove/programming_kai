@@ -9,8 +9,8 @@
 
 using namespace std;
 
-extern vector<int> my_vector;
-extern map<int, int> my_dict;
+extern vector<double> my_vector;
+extern map<double, double> my_dict;
 
 string my_func() {
     
@@ -18,7 +18,7 @@ string my_func() {
     QuickSort(my_vector);
 
     //Осторожно говонокод
-    int a_i, a_j, a_k, a_l, i, j, k, l;
+    double a_i, a_j, a_k, a_l, i, j, k, l;
     a_i = my_vector[1];
     a_j = my_vector[2];
     a_k = my_vector[3];
@@ -41,10 +41,10 @@ string my_func() {
 // Буду использовать быструю сортировку
 
 
-int Partition(vector<int>& values, int l, int r)
+double Partition(vector<double>& values, double l, double r)
 {
-    int x = values[r];
-    int less = l;
+    double x = values[r];
+    double less = l;
 
     for (int i = l; i < r; ++i)
     {
@@ -60,11 +60,11 @@ int Partition(vector<int>& values, int l, int r)
 }
 
 
-void QuickSortImpl(vector<int>& values, int l, int r)
+void QuickSortImpl(vector<double>& values, double l, double r)
 {
     if (l < r) 
     {
-        int q = Partition(values, l, r);
+        double q = Partition(values, l, r);
         QuickSortImpl(values, l, q - 1);
         QuickSortImpl(values, q + 1, r);
     }

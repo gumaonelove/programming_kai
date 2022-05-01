@@ -10,8 +10,8 @@
 
 using namespace std;
 
-vector<int> my_vector;
-map<int, int> my_dict;
+vector<double> my_vector;
+map<double, double> my_dict;
 
 int n;
 
@@ -29,7 +29,7 @@ bool init()
     {
         for(int j = 1; j <= n; j++) {
             cout << "my_vector[" << j << "] = ";
-            now_value = getIndex();
+            now_value = getValue();
             my_vector.push_back(now_value);
             if (my_dict.count(now_value) == 0)
                 my_dict[now_value] = j;
@@ -55,7 +55,7 @@ bool file_init (ifstream & file)
     if(checkIndexes()) 
     {
         for(int j = 1; j <= n; j++) {
-            now_value = getNumberFromFile(file);
+            now_value = getDoubleFromFile(file);
             cout << "my_vector[" << j << "] = " << now_value << endl;
             my_vector.push_back(now_value);
             if (my_dict.count(now_value) == 0)
@@ -86,11 +86,47 @@ int getIndex()
     }
 }
 
+double getValue()
+{
+    while (true)
+    {
+        double a;
+        cin >> a;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ошибка ввода." << endl;
+        } else {
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            return a;
+        }
+    }
+}
+
+
 int getNumberFromFile(ifstream & file)
 {
     while (true) 
     {
         int a;
+        file >> a;
+        if (file.fail()) {
+            file.clear();
+            file.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Ошибка ввода." << endl;
+        } else {
+            file.ignore(numeric_limits<streamsize>::max(), '\n');
+            return a;
+        }
+    }
+}
+
+
+double getDoubleFromFile(ifstream & file)
+{
+    while (true)
+    {
+        double a;
         file >> a;
         if (file.fail()) {
             file.clear();
