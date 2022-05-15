@@ -1,6 +1,9 @@
 #ifndef INC_265_FUNCTIONS_H
 #define INC_265_FUNCTIONS_H
 
+#include <string>
+#include <vector>
+
 int getIndex();
 
 std::string my_function();

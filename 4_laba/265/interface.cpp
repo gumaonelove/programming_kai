@@ -11,14 +11,11 @@ using namespace std;
 vector<char> my_vector;
 extern int n;
 
+
 string get_file_url()
 {
     string _file_url;
-    cout << "Укажите адрес файла для вывода результатов работы программы, " << endl;
-    cout << "Пример: '~/rez/out.txt' => ";
-
-    cin >> _file_url;
-
+    getline(cin, _file_url);
     return _file_url;
 }
 
@@ -55,7 +52,6 @@ bool file_init (ifstream & file)
 {   
     string line;
     getline(file, line);
-    cout << line << endl;
 
     n = stoi(line);
 

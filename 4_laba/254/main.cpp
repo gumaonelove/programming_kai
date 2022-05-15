@@ -23,9 +23,7 @@ int main()
         to_file = get_0_1();
 
         if (!from_file && !to_file) // из консоли в консоль
-        {   
-            
-
+        {
             if (init())
             {
                 cout << my_function() << endl;
