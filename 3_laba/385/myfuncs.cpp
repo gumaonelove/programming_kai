@@ -1,8 +1,6 @@
 #include <string>
 #include <vector>
 
-#include <fstream>
-
 #include "functions.h"
 
 using namespace std;
@@ -12,6 +10,7 @@ extern vector< vector <double> > my_matrix;
 
 double minumum = 1000000000;
 int line_with_min_number = 0;
+
 
 string my_function() 
 {  
@@ -29,8 +28,12 @@ vector <double> get_vector(string now_line, int string_number)
     string now_str = "";
     
     double tmp_number;
+    int len_str = now_line.size();
 
-    for (int i = 0; i < now_line.size(); i++)
+    if (now_line[now_line.size() - 1] == ' ')
+        len_str -= 1;
+
+    for (int i = 0; i < len_str; i++)
     {
         if (now_line[i] != ' ') 
         {

@@ -19,4 +19,4 @@ bool get_0_1();
 
 std::vector <double> get_vector(std::string now_line, int string_number);
 
-#endif //INC_385_FUNCTIONS_H
+#endif //INC_385_FUNCTclIONS_H
