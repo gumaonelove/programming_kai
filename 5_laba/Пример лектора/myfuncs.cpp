@@ -8,7 +8,7 @@
 unsigned long long shiftr(unsigned char nbyte, unsigned long long nnum)
 {
     using namespace std;
-    // cout << sizeof(unsigned long long); 8
+
     unsigned long long mask;
 
     switch (nbyte)
