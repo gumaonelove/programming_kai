@@ -5,6 +5,9 @@
 #ifndef INC_5_25_MYFUNCS_H
 #define INC_5_25_MYFUNCS_H
 
-std::string my_function(unsigned long long nnum, std::string subsequence);
+std::string get_string_from_arr_char(char *args);
+std::string to_binary_string(unsigned int n);
+
+int r_find(std::string my_string, std::string my_substring);
 
 #endif //INC_5_25_MYFUNCS_H

@@ -4,25 +4,50 @@
 
 #include <iostream>
 #include <string>
+#include<limits>
 #include "myfuncs.h"
 
-std::string my_function(unsigned long long nnum, std::string subsequence)
-{
-    using namespace std;
 
-    unsigned long long bits;
-    unsigned long long mask;
-    for(int i = 0; i< subsequence.length(); i++){
-        bits |= (subsequence[i] & 1) << i;
-        mask |= 1 << i;
+std::string to_binary_string(unsigned int n)
+{
+    std::string buffer; // символы ответа в обратном порядке
+    // выделим память заранее по максимуму
+    buffer.reserve(std::numeric_limits<unsigned int>::digits);
+    do
+    {
+        buffer += char('0' + n % 2); // добавляем в конец
+        n = n / 2;
+    } while (n > 0);
+    return std::string(buffer.crbegin(), buffer.crend()); // разворачиваем результат
+}
+
+
+std::string get_string_from_arr_char(char *args)
+{
+    std::string str = "";
+    for(int i = 0; i < args[i] != '\0'; i++){
+       str += args[i];
     }
- 
-    for(int i = 0; i < 64 - subsequence.length(); i++){
-        if(!(nnum & (mask << i)) ^ (bits << i)){
-            cout << "\nOn " << i + subsequence.length() << "th position\n";
-            return 0;
-        }
+    return str;
+}
+
+
+int r_find(std::string my_string, std::string my_substring)
+{
+
+    int last_index = -100;
+    for (int i = 0; i < my_string.length(); i++) 
+    {
+        bool flag = true;
+        for (int j = 0; j < my_substring.length(); j++){
+            // std::cout << "my_string = " << my_string[i + j] << "|   my_substring = " << my_substring[j] << std::endl;
+            flag *= bool(my_string[i + j] == my_substring[j]);
+        };
+        if (flag){
+            // std::cout << "i = "<< i << std::endl;
+            last_index = i;
+        }       
     }
- 
-    cout << "\nВхождений нет\n";
-};
+
+    return last_index;
+}
