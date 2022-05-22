@@ -2,9 +2,9 @@
 // Created by Булат Гумеров on 16.05.2022.
 //
 
-#ifndef INC_4_254_MYFUNCS_H
-#define INC_4_254_MYFUNCS_H
+#ifndef INC_5_25_MYFUNCS_H
+#define INC_5_25_MYFUNCS_H
 
-unsigned long long shiftr(unsigned char nbyte, unsigned long long nnum);
+std::string my_function(unsigned long long nnum, std::string subsequence);
 
-#endif //INC_4_254_MYFUNCS_H
+#endif //INC_5_25_MYFUNCS_H

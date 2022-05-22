@@ -3,26 +3,26 @@
 //
 
 #include <iostream>
+#include <string>
 #include "myfuncs.h"
 
-unsigned long long shiftr(unsigned char nbyte, unsigned long long nnum)
+std::string my_function(unsigned long long nnum, std::string subsequence)
 {
     using namespace std;
-    // cout << sizeof(unsigned long long); 8
-    unsigned long long mask;
 
-    switch (nbyte)
-    {
-        case 1: mask = 0xFF; break;
-        case 2: mask = 0xFFFF; break;
-        case 3: mask = 0xFFFFFF; break;
-        case 4: mask = 0xFFFFFFFF; break;
-        case 5: mask = 0xFFFFFFFFFF; break;
-        case 6: mask = 0xFFFFFFFFFFFF; break;
-        case 7: mask = 0xFFFFFFFFFFFFFF; break;
-        case 8: mask = 0xFFFFFFFFFFFFFFFF; break;
-        default:;
+    unsigned long long bits;
+    unsigned long long mask;
+    for(int i = 0; i< subsequence.length(); i++){
+        bits |= (subsequence[i] & 1) << i;
+        mask |= 1 << i;
     }
-    
-    return mask & ( ((nnum & 0x1) << (nbyte * 8 - 1)) | (nnum >> 1));
+ 
+    for(int i = 0; i < 64 - subsequence.length(); i++){
+        if(!(nnum & (mask << i)) ^ (bits << i)){
+            cout << "\nOn " << i + subsequence.length() << "th position\n";
+            return 0;
+        }
+    }
+ 
+    cout << "\nВхождений нет\n";
 };

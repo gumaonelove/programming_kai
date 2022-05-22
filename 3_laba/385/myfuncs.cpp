@@ -18,7 +18,7 @@ std::string my_function(std::vector< std::vector <double> > my_matrix)
 
     if (find(my_matrix)){
         answer = "Минимальный элемент единственный по условию задачи";
-        cout << "Элемент " << minumum << "должен встречаться ровно один раз";
+        cout << "Элемент " << minumum << "должен встречаться ровно один раз" << endl;
         
     } else {
         answer = "Сумма элементов строки: ";
@@ -31,9 +31,12 @@ std::string my_function(std::vector< std::vector <double> > my_matrix)
 
 bool find(std::vector< std::vector <double> > my_matrix)
 {
+    int count = 0;
     for (int i = 0; i < my_matrix.size(); i++){
         for (int j = 0; j < my_matrix.size(); j++){
             if (my_matrix[i][j] == minumum)
+                count += 1;
+            if (count == 2)
                 return true;
         }
     }

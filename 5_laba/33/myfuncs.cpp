@@ -5,10 +5,10 @@
 #include <iostream>
 #include "myfuncs.h"
 
-unsigned long long shiftr(unsigned char nbyte, unsigned long long nnum)
+unsigned long long my_function(unsigned char nbyte, std::string subsequence_1, std::string subsequence_2, unsigned long long nnum_1, unsigned long long nnum_2)
 {
     using namespace std;
-    // cout << sizeof(unsigned long long); 8
+
     unsigned long long mask;
 
     switch (nbyte)
@@ -24,5 +24,5 @@ unsigned long long shiftr(unsigned char nbyte, unsigned long long nnum)
         default:;
     }
     
-    return mask & ( ((nnum & 0x1) << (nbyte * 8 - 1)) | (nnum >> 1));
-};
+    return mask;
+}
