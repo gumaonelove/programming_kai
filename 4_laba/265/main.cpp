@@ -87,22 +87,20 @@ int main()
             break;
         } else if (from_file && !to_file) // from file to console
         {
-
             cout << "Укажите адрес файла для ввода данных, " << endl;
             cout << "Пример: '~/rez/in.txt' => ";
+
             string file_in_url = get_file_url();
             if (file_in_url.empty())
                 file_in_url = "in.txt";
             ifstream file_in(file_in_url);
-            file_in.close();
-
 
             if (file_init(file_in))
             {
                 cout << my_function() << endl;
                 my_vector.clear();
             }
-
+            file_in.close();
             break;
         }
     }

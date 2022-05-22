@@ -7,25 +7,35 @@
 
 #include "functions.h"
 
-using namespace std;
-
 int n = 0;
-vector< vector <double> > my_matrix;
 
 
-void init()
+std::vector< std::vector <double> > get_matrix(bool from_file, std::ifstream & file)
 {
+    using namespace std;
+
     string now_str;
     vector  <double> now_vector;
+    vector< vector <double> > my_matrix;
 
     cout << "Введите значение n: ";
-    n = getIndexFromConsole();
+    if (from_file){
+        n = getIndexFromFile(file);
+    } else {
+        n = getIndexFromConsole();
+    }
+    
     int count_vectors = 0;
 
     while (count_vectors != n)
     {
-        cout << "Введите строку матрицы (разделитель = ' ') " << count_vectors << ": " << endl;
-        now_str = getStringFromConsole();
+        if (from_file){
+            getline(file, now_str);
+        } else {
+            cout << "Введите строку матрицы (разделитель = ' ') " << count_vectors << ": " << endl;
+            getline(cin, now_str);
+        }
+        
         now_vector = get_vector(now_str, count_vectors);
         if (now_vector.size() == n){
             my_matrix.push_back(now_vector);
@@ -33,39 +43,16 @@ void init()
         } else {
             cout << "Количество символов в строке должно быть n, повторите ввод" << endl;
         }
-
-    }
-}
-
-
-void file_init (ifstream & file)
-{   
-    string now_str;
-    vector  <double> now_vector;
-    n = getIndexFromFile(file);
-    cout << "Введено значение n = " << n << endl;
-
-    int count_vectors = 0;
-
-    while (count_vectors != n)
-    {
-        getline(file, now_str);
-        now_vector = get_vector(now_str, count_vectors);
-        if (now_vector.size() == n) {
-            my_matrix.push_back(now_vector);
-            count_vectors += 1;
-        } else {
-            cout << "Количество символов в строке должно быть n, измените файл in.txt" << endl;
-            break;
-        }
     }
 
-    cout << "Ответ в файле out.txt" << endl;
+    return my_matrix;
 }
 
 
 int getIndexFromConsole() 
 {
+    using namespace std;
+
     while (true)
     {
         int a;
@@ -82,24 +69,10 @@ int getIndexFromConsole()
 }
 
 
-string getStringFromConsole()
+int getIndexFromFile(std::ifstream & file) 
 {
-    while (true)
-    {
-        string line = "";
-        getline(cin, line);
-        if (cin.fail()) {
-            cin.clear();
-            cout << "Ошибка ввода." << endl;
-        } else {
-            return line;
-        }
-    }
-}
+    using namespace std;
 
-
-int getIndexFromFile(ifstream & file) 
-{
     while (true)
     {
         int a;
@@ -118,6 +91,8 @@ int getIndexFromFile(ifstream & file)
 
 bool get_0_1() 
 {
+    using namespace std;
+
     while (true)
     {
         char sm;
@@ -137,6 +112,8 @@ bool get_0_1()
 
 bool getNext()
 {
+    using namespace std;
+
     cout << "Продолжаем? (0 - нет, 1 - да): ";
     while (true)
     {

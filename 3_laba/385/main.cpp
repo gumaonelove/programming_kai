@@ -6,6 +6,7 @@
 int main() 
 {
     using namespace std;
+
     ifstream file_in("in.txt");
     ofstream file_out("out.txt");
     unsigned char from_file;
@@ -18,36 +19,25 @@ int main()
             from_file = get_0_1();
             cout << "Вывод на консоль (0) или в файл (1): ";
             to_file = get_0_1();
-            if (!from_file && !to_file) // из консоли в консоль
+            
+            if (!to_file) //в консоль
             {
-                init();
-                cout << my_function() << endl;
+                cout << my_function(get_matrix(from_file, file_in)) << endl;
                 if(getNext()) {
                     continue;
                 } else {
                     cout << "До скорой встречи." << endl;
                     break;
                 }
-            } else if (!from_file && to_file) // из консоли в файл
+            } else // в файл
             { 
-                init();
-                file_out << my_function() << endl;
+                file_out << my_function(get_matrix(from_file, file_in)) << endl;
                 if(getNext()) {
                     continue;
                 } else {
                     cout << "До скорой встречи." << endl;
                     break;
                 }
-            } else if (from_file && !to_file) // из файла в консоль
-            { 
-                file_init(file_in);
-                cout << my_function() << endl;
-                break;
-            } else if (from_file && to_file) // из файла в файл
-            { 
-                file_init(file_in);
-                file_out << my_function() << endl;
-                break;
             }
         } else {
             cout << "Не удалось открыть файл(ы)!" << endl;

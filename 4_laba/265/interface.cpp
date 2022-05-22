@@ -25,7 +25,7 @@ bool init()
     cout << "Введите значение n: ";
     n = getIndex();
 
-    if (n > 0) 
+    if (n > 0)
     {
         char now_character;
         my_vector.push_back('0');
@@ -33,8 +33,8 @@ bool init()
         for (int i = 1; i <= n; i ++) 
         {
             cout << "S[" << i << "] = ";
-            cin >> now_character;
-            my_vector.push_back(now_character);
+            my_vector.push_back(cin.get());
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
 
         return true;
@@ -79,7 +79,7 @@ bool file_init (ifstream & file)
 }
 
 
-int getIndex() 
+int getIndex()
 {
     while (true) {
         int a;

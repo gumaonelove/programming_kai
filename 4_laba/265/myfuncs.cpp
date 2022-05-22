@@ -1,5 +1,4 @@
 #include <string>
-#include <iostream>
 #include <vector>
 
 #include "functions.h"
@@ -21,19 +20,16 @@ string my_function()
 string my_replace (vector<char> now_vector) 
 {
     bool flag = false;
-    int index = 0;
     string ans = "";
     for (int i = 1; i <= n; i++)
     {   
         if (now_vector[i] == '*' and !flag)
         {
             flag = true;
-            index = i;
             ans += '*';
             continue;
         }
-        if (flag)
-        {
+        if (flag){
             ans += '-';
         } else {
             ans += now_vector[i];
