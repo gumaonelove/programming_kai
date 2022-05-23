@@ -11,18 +11,18 @@ int main(int args, char **argv)
     using namespace std;
     if (args == 5)
     {
-        int nnum_1;
-        int nnum_2;
+        unsigned long long nnum_1;
+        unsigned long long nnum_2;
         string num_str_1;
         string num_str_2;
         string subsequence_1;
         string subsequence_2;
 
         try {
-            nnum_1 = stoul(argv[3]);
+            nnum_1 = stoull(argv[3]);
             num_str_1 = to_binary_string(nnum_1);
 
-            nnum_2 = stoul(argv[4]);
+            nnum_2 = stoull(argv[4]);
             num_str_2 = to_binary_string(nnum_2);
             
         } catch (const invalid_argument & ia){

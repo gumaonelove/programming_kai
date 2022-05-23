@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-std::string to_binary_string(unsigned int n);
+std::string to_binary_string(unsigned long long);
 std::string get_string_from_arr_char(char *args);
 std::vector <int> get_indexes(std::string subsequence);
 void my_function(std::string subsequence_1, std::string subsequence_2, std::string num_str_1, std::string num_str_2);
