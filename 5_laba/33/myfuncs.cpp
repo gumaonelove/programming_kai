@@ -11,6 +11,8 @@
 
 std::string to_binary_string(unsigned int n)
 {
+    if (n < 0)
+        n *= -1
     std::string buffer; // символы ответа в обратном порядке
     // выделим память заранее по максимуму
     buffer.reserve(std::numeric_limits<unsigned int>::digits);
