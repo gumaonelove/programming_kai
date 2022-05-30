@@ -1,32 +1,47 @@
 #include <iostream>
+#include <string>
+#include "List.h"
 
-#include "my_structs.h"
-#include "my_functions.h"
-#include "my_constants.h"
+using namespace std;
 
-int main(){
-    get_navigation();
-
-    List* list(nullptr);
-
-    while (true){
-        switch (getIndex()){
-            case 1:
-                case_1(list);
-                continue;
-            case 2:
-                case_2(list);
-                continue;
-            case 3:
-                case_3(list);
-                continue;
-            default:
-                std::cout << "Указан неверный номер, повтороите попытку" << std::endl;
-                continue;
-        }
+int get_num() // функция получения от пользователя указаний к работе программы
+{
+    short unsigned int num{};
+    cout << "\t***Что требуется сделать?***\n1 - Добавить новый элемент\n2 - Печать всех элементов в отсортированном виде"
+         << "\n3 - Сброс значений всех элементов\n4 - выйти из программы" << endl;
+    cout << "Ожидание пользовательского ввода: ";
+    while (!(cin >> num) || cin.peek() != '\n' || num != 1 and num != 2 and
+                                                  num != 3 and num != 4 and num != 5) // проверка на соответствие вводимых данных требуемым
+    {
+        cin.clear(); // очищение флагов ошибки ввода
+        while (cin.get() != '\n'); // очищение буфера cin
+        cout << "\nОшибка ввода. Введите корректное значение: ";
     }
-    if (unloadingList(DEFAULT_NAME_FILE_IN_OUT, list)){
-        std::cout << "Список выгружен и удален из оперативной памяти" << std::endl;
+    return num;
+}
+
+int main()
+{
+    List lst; // инициализация списка
+    bool exit{ false }; // сигнал к окончанию работы программы
+    lst.List_input(); // заполнение списка данными из файла
+    while (!exit) // основной цикл программы
+    {
+        switch (get_num()) // работа пользователя с функционалом программы
+        {
+            case 1: // если добавить элемент списка
+                lst.Add_Data(); // вызов функции добавления элемента в список
+                break;
+            case 2: // если печать данных в отсортированном виде
+                lst.Sort_data(); // вызов функции печати данных в отсортированном виде
+                break;
+            case 3: // если сброс значений по умолчанию
+                lst.Set_default(); // вызов функции сброса значений по умолчанию
+                break;
+            case 4: // если прекращение работы программы
+                exit = true; // установление флага на выход из цикла
+                break;
+        }
     }
     return 0;
 }
