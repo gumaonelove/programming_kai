@@ -1,11 +1,10 @@
 #include <iostream>
 
 #include "my_structs.h"
-#include "functions.h"
+#include "my_functions.h"
+#include "my_constants.h"
 
-int main()
-{
-    using namespace std;
+int main(){
     get_navigation();
 
     List* list(nullptr);
@@ -22,12 +21,12 @@ int main()
                 case_3(list);
                 continue;
             default:
-                cout << "Указан неверный номер, повтороите попытку" << endl;
+                std::cout << "Указан неверный номер, повтороите попытку" << std::endl;
                 continue;
         }
     }
     if (unloadingList(DEFAULT_NAME_FILE_IN_OUT, list)){
-        cout << "Список выгружен и удален из оперативной памяти" << endl;
+        std::cout << "Список выгружен и удален из оперативной памяти" << std::endl;
     }
     return 0;
 }

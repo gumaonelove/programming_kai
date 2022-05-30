@@ -8,36 +8,35 @@
 
 int main(int args, char **argv)
 {
-    using namespace std;
     if (args == 3)
     {
         unsigned long long nnum;
-        string num_str;
-        string subsequence;
+        std::string num_str;
+        std::string subsequence;
 
         try {
-            nnum = stoul(argv[1]);
+            nnum = std::stoull(argv[1]);
             num_str = to_binary_string(nnum);
             
-        } catch (const invalid_argument & ia){
-            cerr << "Невозможно преобразовать аргументы(ы) в число типа: " << ia.what() << endl;
+        } catch (const std::invalid_argument & ia){
+            std::cerr << "Невозможно преобразовать аргументы(ы) в число типа: " << ia.what() << std::endl;
             return 0;
         }
 
         subsequence = get_string_from_arr_char(argv[2]);
-        cout << "number " << nnum << " = " << num_str << endl;
-        cout << "subsequence = " << subsequence << endl;
+        std::cout << "number " << nnum << " = " << num_str << std::endl;
+        std::cout << "subsequence = " << subsequence << std::endl;
         int index = r_find(num_str, subsequence);
         if (index == -100){
-            cout << "Данная последовательность не встречается";      
+            std::cout << "Данная последовательность не встречается" << std::endl;
         } else {
-            cout << "index = " << index << endl;
+            std::cout << "index = " << index << std::endl;
         }
             
     } else {
-        cout << "Необходимо указать три аргумента командной строки" << endl;
-        cout << "1: Число" << endl;
-        cout << "2: Последовательность" << endl;
+        std::cout << "Необходимо указать три аргумента командной строки" << std::endl;
+        std::cout << "1: Число" << std::endl;
+        std::cout << "2: Последовательность" << std::endl;
     }
 
     return 0;

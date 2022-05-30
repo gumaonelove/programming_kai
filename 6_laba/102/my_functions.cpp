@@ -1,39 +1,41 @@
 #include <string>
 #include <algorithm>
+#include <iostream>
 
-#include "functions.h"
+#include "my_functions.h"
 #include "my_structs.h"
 
 void case_1 (List list){
-    cout << "Добавить новый элемент: " << endl;
-    cout << "Введите строку необходимую для вставки:" << endl;
+    std::cout << "Добавить новый элемент: " << std::endl;
+    std::cout << "Введите строку необходимую для вставки:" << std::endl;
     int index = getIndex();
-    cout << "Введите строку данных для вставки, пример (Ф;И;О;возраст;семейное положение)" << endl;
-    string line;
-    getline(cin, line);
+    std::cout << "Введите строку данных для вставки, пример (Ф;И;О;возраст;семейное положение)" << std::endl;
+    std::string line;
+    getline(std::cin, line);
     
     list.add_element(index, line);
 
-    cout << "Вставка произведена, обновленный список:" << endl;
+    std::cout << "Вставка произведена, обновленный список:" << std::endl;
     list.print();
 }
 
 void case_2(List* list){
-    cout << "Печать всех элементов в отсортированном виде" << endl;
-    unsigned indso{0};
-    cout << "Сортировка по: " << endl;
-    cout << "по фамилии \t 1" << endl;
-    cout << "по имени \t 2" << endl;
-    cout << "по отчеству \t 3" << endl;
-    cout << "по возрасту \t 4" << endl;
-    cout << "по семейному положению \t 5" << endl;
+    unsigned indso = 0;
+
+    std::cout << "Печать всех элементов в отсортированном виде" << std::endl;
+    std::cout << "Сортировка по: " << std::endl;
+    std::cout << "по фамилии \t 1" << std::endl;
+    std::cout << "по имени \t 2" << std::endl;
+    std::cout << "по отчеству \t 3" << std::endl;
+    std::cout << "по возрасту \t 4" << std::endl;
+    std::cout << "по семейному положению \t 5" << std::endl;
 
     indso = getValueOfRange(1, 5);
-    return sort(list, [](string s1, string s2) -> bool {return s1 < s2 ? true : false; }, indso);
+    return std::sort(list, [](std::string s1, std::string s2) -> bool { return s1 < s2 ? true : false; }, indso);
 }
 
 void case_3(List list){
-    cout << "Сброс значений всех элементов" << endl;
+    std::cout << "Сброс значений всех элементов" << std::endl;
     list.reset_list();
 }
 
@@ -43,7 +45,7 @@ int getValueOfRange(int start, int finish){
         if (n >= start && n <= finish){
             return n;
         } else {
-            cout << "Введен неверный индекс, повторите попытку" << endl;
+            std::cout << "Введен неверный индекс, повторите попытку" << std::endl;
         }
     }
 }
