@@ -8,6 +8,7 @@
 void _get_navigation_text();
 
 int get_num();
-int getIndex();
+
+bool string_comparison(string str_1, string str_2);
 
 #endif //PROGRAMMING_KAI_MY_FUNCTIONS_H
