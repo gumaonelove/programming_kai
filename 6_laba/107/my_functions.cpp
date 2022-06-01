@@ -31,7 +31,7 @@ int get_num() { // функция получения от пользовател
 }
 
 bool string_comparison(string str_1, string str_2){
-    if (str_1.size() == str_2.size()){
+    if (str_1.size() == str_2.size() - 1){
         for (int i = 0; i < str_1.size(); i++){
             if (str_1[i] != str_2[i])
                 return false;

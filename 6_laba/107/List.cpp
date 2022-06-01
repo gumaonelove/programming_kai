@@ -22,7 +22,7 @@ List::~List(){
         if (head != nullptr){
             temp = head;
             for (int i = 0; i < Size; i++){
-                f << temp->surname + ";\t" + temp->name + "; \t" + temp->lastname + "; \t" + temp->age + "; \t" + temp->family_status << endl;
+                f << temp->surname + ";" + temp->name + ";" + temp->lastname + ";" + temp->age + ";" + temp->family_status << endl;
                 temp = temp->pNext;
             }
             cout << "Данные успешно загружены в файл" << endl;
@@ -45,13 +45,11 @@ void List::Separate(string str, string data[]){ // метод для разде�
     for (int i = 0; i <= str.size(); i++){
         // Итерируемся по строке и посимвольно записываем данные, при встрече с разделителем (;)
         // начинаем записывать данные в следующую ячейку, так происходит разделение по полям данных
-        if (str[i] != '\t'){
-            if (str[i] == ';'){
-                j++;
-                continue;
-            }
-            data[j] += str[i];
+        if (str[i] == ';'){
+            j++;
+            continue;
         }
+        data[j] += str[i];
     }
 }
 
@@ -77,25 +75,23 @@ void List::Add_Data(string data[]){ // метод добавления данн�
 
 void List::Search(){
     string str; // буферная строка, получаемая из консоли
-    cout << "Введите строку, для проверки вхождения (пример: Ф;    И;  О;  Возраст;    Семейное_положение): " << endl;
+    cout << "Введите строку, для проверки вхождения (пример: Ф;И;О;Возраст;Семейное_положение): " << endl;
     getline(cin, str); // получаем строку из console
     while (str == ""){
         getline(cin, str); // получаем строку из console
     }
 
+
     Node* temp;
     temp = head;
     for (int i = 0; i < Size; i++){
-        string now_str = "";
-        now_str = temp->surname + ";\t" + temp->name + "; \t" + temp->lastname + "; \t" + temp->age + "; \t" + temp->family_status;
-        cout << now_str << endl;
+        string now_str = temp->surname + ";" + temp->name + ";" + temp->lastname + ";" + temp->age + ";" + temp->family_status;
         if (string_comparison(str, now_str)){
             cout << "Есть вхождение" << endl;
             return;
         }
         temp = temp->pNext;
     }
-
     cout << "Нет вхождений" << endl;
     return;
 }
@@ -206,11 +202,11 @@ void List::Sort_data() { // метод печати данных в отсорт
 
     if (how == 1) { // если пользователь указал сортировку по возрастанию, выводим значения по возрастанию
         for (int i = 0; i < Size; i++) { // итерируемся по отсортированному массиву и выводим значения
-            cout << arr[i].lastname << '\t' << arr[i].name << '\t' << arr[i].lastname << '\t' << arr[i].age << '\t' << arr[i].family_status << endl;
+            cout << arr[i].surname << '\t' << arr[i].name << '\t' << arr[i].lastname << '\t' << arr[i].age << '\t' << arr[i].family_status << endl;
         }
     } else { // если пользователь указал сортировку по убыванию, выводим значения по убыванию
         for (int i = Size - 1, j = 1; i >= 0; i--, j++) { // итерируемся по отсортированному массиву и выводим значения
-            cout << arr[i].lastname << '\t' << arr[i].name << '\t' << arr[i].lastname << '\t' << arr[i].age << '\t' << arr[i].family_status << endl;
+            cout << arr[i].surname << '\t' << arr[i].name << '\t' << arr[i].lastname << '\t' << arr[i].age << '\t' << arr[i].family_status << endl;
         }
     }
     delete [] arr; // освобождаем память после печати всех значений
